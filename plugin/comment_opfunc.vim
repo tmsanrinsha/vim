@@ -1,10 +1,11 @@
+" 元のファイル
 " Commenting with opfunc - Vim Tips Wiki
 " (http://vim.wikia.com/wiki/Commenting_with_opfunc)
-" を改造してc, css, htmlの囲むコメントにも対応させた。
-" ただし、一行単位。
-" 日本語で説明しているサイト
 " Hack #205: 複数行をコメントアウトする
 " (http://vim-users.jp/2011/03/hack205/)
+
+" 改変してc, css, htmlの囲むコメントにも対応させた。
+" ただし、一行単位。
 
 " Comment or uncomment lines from mark a to mark b.
 function! CommentMark(docomment, a, b)
