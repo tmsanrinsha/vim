@@ -37,7 +37,7 @@ function! CommentStrStart()
     return '//'
   elseif &ft == 'vim'
     return '"'
-  elseif &ft == 'python' || &ft == 'perl' || &ft == 'sh' || &ft == 'R' || &ft == 'ruby'
+  elseif &ft == 'python' || &ft == 'perl' || &ft == 'sh' || &ft == 'zsh' || &ft == 'R' || &ft == 'ruby'
     return '#'
   elseif &ft == 'lisp'
     return ';'
