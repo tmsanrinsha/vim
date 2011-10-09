@@ -52,8 +52,11 @@ cnoremap <C-N> <DOWN>
 "----------------------------------------------------------
 " バッファ
 "----------------------------------------------------------
-nnoremap <C-n> :bn<CR>
-nnoremap <C-p> :bp<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap <Esc><Tab> :bp<CR>
+"nnoremap <S-Tab> :bp<CR>
+"nnoremap <C-n> :bn<CR>
+"nnoremap <C-p> :bp<CR>
 "変更中のファイルでも、保存しないで他のファイルを表示
 set hidden
 
