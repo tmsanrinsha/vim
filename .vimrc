@@ -52,11 +52,15 @@ cnoremap <C-N> <DOWN>
 "----------------------------------------------------------
 " バッファ
 "----------------------------------------------------------
+" <S-Tab>はTera Termのデフォルトの設定では使えない
+" 設定方法はこちら
+" http://sanrinsha.lolipop.jp/blog/2011/10/tera-term.html
+" 面倒な場合は下の<C-n><C-p>の方法をとるべし
 nnoremap <Tab> :bn<CR>
-nnoremap <Esc><Tab> :bp<CR>
-"nnoremap <S-Tab> :bp<CR>
+nnoremap <S-Tab> :bp<CR>
 "nnoremap <C-n> :bn<CR>
 "nnoremap <C-p> :bp<CR>
+
 "変更中のファイルでも、保存しないで他のファイルを表示
 set hidden
 
