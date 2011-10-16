@@ -160,15 +160,15 @@ source $VIMRUNTIME/macros/matchit.vim "HTML tag match
 inoremap jj <ESC>
 
 
-" "---------------------------------------------------------- 
-" " 文字コード 
-" "---------------------------------------------------------- 
-" set encoding=utf-8 
-" set fileencoding=utf-8 
-" set fileencodings=ucs-bom 
-" "□や○の文字があってもカーソル位置がずれないようにする 
-" set ambiwidth=double 
-"  
+"----------------------------------------------------------
+" 文字コード
+"----------------------------------------------------------
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom
+"□や○の文字があってもカーソル位置がずれないようにする
+set ambiwidth=double
+  
 " " 文字コードの自動認識 
 " if &encoding !=# 'utf-8' 
 "   set encoding=japan 
