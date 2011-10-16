@@ -27,7 +27,7 @@ set t_Co=256
 colorscheme molokai
 
 syntax enable
-filetype plugin on
+filetype plugin indent on
  
 "https://github.com/tpope/vim-pathogen
 "call pathogen#infect()
