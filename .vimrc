@@ -16,7 +16,7 @@ set ruler
 "               0: 全く表示しない
 "               1: ウィンドウの数が2以上のときのみ表示
 "               2: 常に表示
-if v:version > 700
+if v:version >= 700
     set laststatus=2
 endif
 
