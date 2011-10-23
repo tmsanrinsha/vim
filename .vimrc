@@ -251,7 +251,7 @@ source $VIMRUNTIME/menu.vim
 " neocomplcache
 "----------------------------------------------------------
 " setting examples:
-if v:version > 730
+if v:version >= 730
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
