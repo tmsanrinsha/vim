@@ -122,26 +122,26 @@ if &term == "xterm-256color"
   map <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
   imap <special> <expr> <Esc>[200~ XTermPasteBegin("")
   cmap <special> <Esc>[200~ <nop>
-  cmap <special> <Esc>[201~<Esc>\\ <nop>
+  cmap <special> <Esc>[201~<Esc> <nop>
 endif
 
-if &term == "xterm" 
-  let &t_ti .= "\e[?2004h" 
-  let &t_te .= "\e[?2004l" 
-  "let &t_SI .= "\e[?2004h"
-  "let &t_EI = "\e[?2004l" . &t_EI
-  let &pastetoggle = "\e[201~" 
- 
-  function XTermPasteBegin(ret) 
-    set paste 
-    return a:ret 
-  endfunction 
- 
-  map <special> <expr> <Esc>[200~ XTermPasteBegin("0i") 
-  imap <special> <expr> <Esc>[200~ XTermPasteBegin("") 
-  "cmap <special> <Esc>[200~ <nop> 
-  "cmap <special> <Esc>[201~ <nop> 
-endif 
+"if &term == "xterm1" 
+"  let &t_ti .= "\e[?2004h" 
+"  let &t_te .= "\e[?2004l" 
+"  "let &t_SI .= "\e[?2004h"
+"  "let &t_EI = "\e[?2004l" . &t_EI
+"  let &pastetoggle = "\e[201~" 
+" 
+"  function XTermPasteBegin(ret) 
+"    set paste 
+"    return a:ret 
+"  endfunction 
+" 
+"  map <special> <expr> <Esc>[200~ XTermPasteBegin("0i") 
+"  imap <special> <expr> <Esc>[200~ XTermPasteBegin("") 
+"  "cmap <special> <Esc>[200~ <nop> 
+"  "cmap <special> <Esc>[201~ <nop> 
+"endif 
 
 "----------------------------------------------------------
 " マウス
@@ -192,6 +192,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
+vnoremap j gj
+vnoremap k gk
+vnoremap <down> gj
+vnoremap <up> gk
  
 " backspaceキーの挙動を設定する
 " " indent        : 行頭の空白の削除を許す
@@ -204,7 +208,7 @@ if &term == "xterm-256color"
     let &t_SI .= "\eP\e[3 q\e\\"
     let &t_EI .= "\eP\e[1 q\e\\"
 elseif &term == "xterm"
-    let &t_SI .= "\e[3 q"
+    let &t_SI .= "\e[5 q"
     let &t_EI .= "\e[1 q"
 endif
 
