@@ -101,15 +101,17 @@ set smartindent
 "pasteモードのトグル。autoindentをonにしてペーストすると
 "インデントが入った文章が階段状になってしまう。
 "pasteモードではautoindentが解除されそのままペーストできる
-set pastetoggle=<F11>  
+"set pastetoggle=<F11>  
 
 "Tera TermなどのBracketed Paste Modeをサポートした端末では
 "以下の設定で、貼り付けるとき自動的にpasteモードに切り替えてくれる。
 "ノーマルモードからも貼付けできる
 "screenを使っていると使えない
+"for screen
+" .screenrcでterm xterm-256colorとしている場合 
 if &term == "xterm-256color"
-  let &t_ti = &t_ti . "\e[?2004h"
-  let &t_te = "\e[?2004l" . &t_te
+  let &t_ti = &t_ti . "\eP\e[?2004h\e\\"
+  let &t_te = "\eP\e[?2004l\e\\" . &t_te
   let &pastetoggle = "\e[201~"
 
   function XTermPasteBegin(ret)
@@ -120,26 +122,44 @@ if &term == "xterm-256color"
   map <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
   imap <special> <expr> <Esc>[200~ XTermPasteBegin("")
   cmap <special> <Esc>[200~ <nop>
-  cmap <special> <Esc>[201~ <nop>
+  cmap <special> <Esc>[201~<Esc>\\ <nop>
 endif
+
+if &term == "xterm" 
+  let &t_ti .= "\e[?2004h" 
+  let &t_te .= "\e[?2004l" 
+  "let &t_SI .= "\e[?2004h"
+  "let &t_EI = "\e[?2004l" . &t_EI
+  let &pastetoggle = "\e[201~" 
+ 
+  function XTermPasteBegin(ret) 
+    set paste 
+    return a:ret 
+  endfunction 
+ 
+  map <special> <expr> <Esc>[200~ XTermPasteBegin("0i") 
+  imap <special> <expr> <Esc>[200~ XTermPasteBegin("") 
+  "cmap <special> <Esc>[200~ <nop> 
+  "cmap <special> <Esc>[201~ <nop> 
+endif 
 
 "----------------------------------------------------------
 " マウス
 "----------------------------------------------------------
 " Enable mouse support.
 " Ctrlを押しながらマウスをを使うとmouse=aをセットしてないときの挙動になる
-set mouse=a
-
-" For screen.
-" .screenrcでterm xterm-256colorとしている場合
-if &term == "xterm-256color"
-    augroup MyAutoCmd
-        autocmd VimLeave * :set mouse=
-     augroup END
-
-    " screenでマウスを使用するとフリーズするのでその対策
-    set ttymouse=xterm2
-endif
+ set mouse=a 
+  
+ " For screen. 
+ " .screenrcでterm xterm-256colorとしている場合 
+ if &term == "xterm-256color" 
+     augroup MyAutoCmd 
+         autocmd VimLeave * :set mouse= 
+      augroup END 
+  
+     " screenでマウスを使用するとフリーズするのでその対策 
+     set ttymouse=xterm2 
+ endif 
 
 if has('gui_running')
     " Show popup menu if right click.
@@ -179,8 +199,32 @@ nnoremap <up> gk
 " " start         : 挿入モードの開始位置での削除を許す
 set backspace=indent,eol,start
 
+"カーソルの形状の変化
+if &term == "xterm-256color"
+    let &t_SI .= "\eP\e[3 q\e\\"
+    let &t_EI .= "\eP\e[1 q\e\\"
+elseif &term == "xterm"
+    let &t_SI .= "\e[3 q"
+    let &t_EI .= "\e[1 q"
+endif
 
-"----------------------------------------------------------
+"
+"if &term =~ "xterm" 
+"    let &t_SI = "\<Esc>]12;purple\x7" 
+"    let &t_EI = "\<Esc>]12;blue\x7" 
+"endif 
+
+
+
+" let &t_SI .= "\eP\e[<r\e\\" 
+" let &t_EI .= "\eP\e[<s\e[<0t\e\\" 
+" let &t_te .= "\eP\e[<0t\e[<s\e\\" 
+
+"set notimeout      " マッピングについてタイムアウトしない
+"set ttimeout       " 端末のキーコードについてタイムアウトする
+"set timeoutlen=100 " 100 ミリ秒後にタイムアウトする
+
+
 " カッコ・タグの対応
 "----------------------------------------------------------
 set showmatch matchtime=1 "括弧の対応
