@@ -14,7 +14,7 @@ set ruler
 
 " 最下ウィンドウにいつステータス行が表示されるかを設定する。
 "               0: 全く表示しない
-"               1: ウィンドウの数が2以上のときのみ表示
+                1: ウィンドウの数が2以上のときのみ表示
 "               2: 常に表示
 if v:version >= 700
     set laststatus=2
@@ -75,6 +75,10 @@ let g:buftabs_in_statusline=1
 " 現在のバッファをハイライト
 let g:buftabs_active_highlight_group="Visual"
 let g:buftabs_separator = " "  
+"----------------------------------------------------------
+" ウィンドウ
+"----------------------------------------------------------
+nnoremap <C-w>; <C-w>+
  
 "----------------------------------------------------------
 " タブ・インデント
@@ -103,7 +107,7 @@ set pastetoggle=<F11>
 "以下の設定で、貼り付けるとき自動的にpasteモードに切り替えてくれる。
 "ノーマルモードからも貼付けできる
 "screenを使っていると使えない
-if &term == "xterm"
+if &term == "xterm-256color"
   let &t_ti = &t_ti . "\e[?2004h"
   let &t_te = "\e[?2004l" . &t_te
   let &pastetoggle = "\e[201~"
@@ -119,6 +123,33 @@ if &term == "xterm"
   cmap <special> <Esc>[201~ <nop>
 endif
 
+"----------------------------------------------------------
+" マウス
+"----------------------------------------------------------
+" Enable mouse support.
+" Ctrlを押しながらマウスをを使うとmouse=aをセットしてないときの挙動になる
+set mouse=a
+
+" For screen.
+" .screenrcでterm xterm-256colorとしている場合
+if &term == "xterm-256color"
+    augroup MyAutoCmd
+        autocmd VimLeave * :set mouse=
+     augroup END
+
+    " screenでマウスを使用するとフリーズするのでその対策
+    set ttymouse=xterm2
+endif
+
+if has('gui_running')
+    " Show popup menu if right click.
+    set mousemodel=popup
+
+    " Don't focus the window when the mouse pointer is moved.
+    set nomousefocus
+    " Hide mouse pointer on insert mode.
+    set mousehide
+endif
 
 "----------------------------------------------------------
 " 検索
