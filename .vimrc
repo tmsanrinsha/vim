@@ -106,42 +106,29 @@ set smartindent
 "Tera TermなどのBracketed Paste Modeをサポートした端末では
 "以下の設定で、貼り付けるとき自動的にpasteモードに切り替えてくれる。
 "ノーマルモードからも貼付けできる
-"screenを使っていると使えない
-"for screen
-" .screenrcでterm xterm-256colorとしている場合 
-if &term == "xterm-256color"
-  let &t_ti = &t_ti . "\eP\e[?2004h\e\\"
-  let &t_te = "\eP\e[?2004l\e\\" . &t_te
-  let &pastetoggle = "\e[201~"
+if &term =~ "xterm"
+    "for screen
+    " .screenrcでterm xterm-256colorとしている場合 
+    if &term == "xterm-256color"
+        let &t_ti = &t_ti . "\eP\e[?2004h\e\\"
+        let &t_te = "\eP\e[?2004l\e\\" . &t_te
+        let &pastetoggle = "\e[201~"
+    elseif &term == "xterm" 
+        let &t_ti .= &t_ti . "\e[?2004h" 
+        let &t_te .= "\e[?2004l" . &t_te
+        let &pastetoggle = "\e[201~" 
+    endif
 
-  function XTermPasteBegin(ret)
-    set paste
-    return a:ret
-  endfunction
+    function XTermPasteBegin(ret) 
+        set paste 
+        return a:ret 
+    endfunction 
 
-  map <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-  imap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-  cmap <special> <Esc>[200~ <nop>
-  cmap <special> <Esc>[201~<Esc> <nop>
+    map <special> <expr> <Esc>[200~ XTermPasteBegin("0i") 
+    imap <special> <expr> <Esc>[200~ XTermPasteBegin("") 
+    cmap <special> <Esc>[200~ <nop> 
+    cmap <special> <Esc>[201~ <nop> 
 endif
-
-"if &term == "xterm1" 
-"  let &t_ti .= "\e[?2004h" 
-"  let &t_te .= "\e[?2004l" 
-"  "let &t_SI .= "\e[?2004h"
-"  "let &t_EI = "\e[?2004l" . &t_EI
-"  let &pastetoggle = "\e[201~" 
-" 
-"  function XTermPasteBegin(ret) 
-"    set paste 
-"    return a:ret 
-"  endfunction 
-" 
-"  map <special> <expr> <Esc>[200~ XTermPasteBegin("0i") 
-"  imap <special> <expr> <Esc>[200~ XTermPasteBegin("") 
-"  "cmap <special> <Esc>[200~ <nop> 
-"  "cmap <special> <Esc>[201~ <nop> 
-"endif 
 
 "----------------------------------------------------------
 " マウス
