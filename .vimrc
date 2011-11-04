@@ -27,7 +27,6 @@ set t_Co=256
 
 "http://www.vim.org/scripts/script.php?script_id=2340
 colorscheme molokai
-
 syntax enable
 filetype plugin indent on
  
