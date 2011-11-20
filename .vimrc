@@ -76,6 +76,12 @@ let g:buftabs_separator = " "
 " ウィンドウ
 "----------------------------------------------------------
 nnoremap <C-w>; <C-w>+
+"縦分割されたウィンドウのスクロールを同期させる
+"同期させたいウィンドウ上で<F10>を押せばおｋ
+"解除はもう一度<F10>を押す
+"横スクロールも同期させたい場合はこちら
+"http://ogawa.s18.xrea.com/fswiki/wiki.cgi?page=Vim%A4%CE%A5%E1%A5%E2
+nnoremap <F10> :set scrollbind!<CR>
  
 "----------------------------------------------------------
 " タブ・インデント
@@ -158,16 +164,18 @@ endif
 set incsearch
 set ignorecase "検索パターンに大文字を含まなければ大文字小文字を区別しない
 set smartcase "検索パターンに大文字を含んでいたら大文字小文字を区別する
-"set nohlsearch "検索結果をハイライトしない
+set nohlsearch "検索結果をハイライトしない
 
 
-" ESCキー2度押しでハイライトを消す
-set hlsearch  " highlight search
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
-nnoremap / :<C-u>set hlsearch<Return>/
-nnoremap ? :<C-u>set hlsearch<Return>?
-nnoremap * :<C-u>set hlsearch<Return>*
-nnoremap # :<C-u>set hlsearch<Return>#
+" ESCキー2度押しでハイライトのトグル
+nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
+
+"set hlsearch  " highlight search
+"nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+"nnoremap / :<C-u>set hlsearch<Return>/
+"nnoremap ? :<C-u>set hlsearch<Return>?
+"nnoremap * :<C-u>set hlsearch<Return>*
+"nnoremap # :<C-u>set hlsearch<Return>#
 
 "ヴィビュアルモードで選択した範囲だけ検索
 vnoremap / <ESC>/\%V
