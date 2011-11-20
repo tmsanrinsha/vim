@@ -16,11 +16,9 @@ set ruler
 "               0: 全く表示しない
 "               1: ウィンドウの数が2以上のときのみ表示
 "               2: 常に表示
-if v:version >= 700
-    set laststatus=2
-endif
+set laststatus=2
 
-set statusline=%f%=%m%r[%{hostname()}][%{(&fenc!=''?&fenc:&enc)}][%{&ff}][%Y][%v,%l]\ %P
+set statusline=%f%=%m%r[%{(&fenc!=''?&fenc:&enc)}][%{&ff}][%Y][%v,%l]\ %P
 
 "256色
 set t_Co=256
