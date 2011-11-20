@@ -396,3 +396,7 @@ if v:version >= 702
     let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
     let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 endif
+
+if filereadable(expand('~/.vimrc_option'))
+    :source ~/.vim_option
+endif
