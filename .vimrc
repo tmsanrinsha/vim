@@ -20,7 +20,7 @@ if v:version >= 700
     set laststatus=2
 endif
 
-set statusline=%f%=%m%r[%{(&fenc!=''?&fenc:&enc)}][%{&ff}][%Y][%v,%l]\ %P
+set statusline=%f%=%m%r[%{hostname()}][%{(&fenc!=''?&fenc:&enc)}][%{&ff}][%Y][%v,%l]\ %P
 
 "256色
 set t_Co=256
