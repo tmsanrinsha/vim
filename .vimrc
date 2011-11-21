@@ -42,7 +42,11 @@ filetype plugin indent on
 "----------------------------------------------------------
 " コマンドモード
 "----------------------------------------------------------
-set wildmenu "コマンド入力時にTabを押すと補完メニューを表示する
+"set wildmenu "コマンド入力時にTabを押すと補完メニューを表示する
+
+"コマンドモードの補完をシェルコマンドの補完のようにする
+"http://vim-jp.org/vimdoc-ja/options.html#%27wildmode%27
+set wildmode=list:longest
 "前方一致をCtrl+PとCtrl+Nで
 cnoremap <C-P> <UP>
 cnoremap <C-N> <DOWN>
