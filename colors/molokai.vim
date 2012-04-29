@@ -207,8 +207,8 @@ if &t_Co > 255
    "hi Normal          ctermfg=252 ctermbg=233
    hi Normal          ctermfg=252 ctermbg=0
    hi Comment         ctermfg=59
-   "hi CursorLine                  ctermbg=234   cterm=none
-   hi CursorLine      cterm=underline
+   hi CursorLine                  ctermbg=234   cterm=none
+   "hi CursorLine      cterm=underline
    hi CursorColumn                ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
    hi NonText         ctermfg=250 ctermbg=234
@@ -216,8 +216,8 @@ if &t_Co > 255
    " MiniBufExpl Colors
    "hi MBEVisibleActive guifg=#A6DB29 guibg=fg
    "hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-   hi MBEVisibleActive ctermfg=252 ctermbg=125
-   hi MBEVisibleChangedActive ctermfg=16 ctermbg=125
+   " hi MBEVisibleActive ctermfg=252 ctermbg=125
+   " hi MBEVisibleChangedActive ctermfg=16 ctermbg=125
    "hi MBEVisibleChanged guifg=#F1266F guibg=fg
    "hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
    "hi MBEChanged guifg=#CD5907 guibg=fg
