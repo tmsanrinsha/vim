@@ -162,7 +162,6 @@ if &t_Co > 255
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
-   "hi SpecialKey      ctermfg=81
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
    hi ModeMsg         ctermfg=229
@@ -217,7 +216,7 @@ if &t_Co > 255
    "hi CursorLine      cterm=underline
    hi CursorColumn                ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
-   hi NonText         ctermfg=250 ctermbg=234
+   hi NonText         ctermfg=250 ctermbg=0
 
    " MiniBufExpl Colors
    "hi MBEVisibleActive guifg=#A6DB29 guibg=fg
