@@ -139,7 +139,7 @@ if &t_Co > 255
    hi Delimiter       ctermfg=241
 
    hi DiffAdd         ctermfg=193 ctermbg=65
-   hi DiffDelete      ctermfg=162 ctermbg=167
+   hi DiffDelete      ctermfg=193 ctermbg=167
    hi DiffChange      ctermfg=189 ctermbg=60
    hi DiffText        ctermfg=234 ctermbg=110   cterm=bold
 
