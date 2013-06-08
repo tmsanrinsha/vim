@@ -57,7 +57,7 @@ hi IncSearch       guifg=#C4BE89 guibg=#000000
 hi Keyword         guifg=#F92672               gui=bold
 hi Label           guifg=#E6DB74               gui=none
 hi Macro           guifg=#C4BE89               gui=italic
-"hi SpecialKey      guifg=#66D9EF               gui=italic
+hi SpecialKey      guifg=#465457 guibg=#000000 gui=italic
 
 hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
 hi ModeMsg         guifg=#E6DB74
@@ -75,13 +75,12 @@ hi PreProc         guifg=#A6E22E
 hi Question        guifg=#66D9EF
 hi Repeat          guifg=#F92672               gui=bold
 hi Search          guifg=#FFFFFF guibg=#455354
-" marks column
+" marks
 hi SignColumn      guifg=#A6E22E guibg=#232526
 hi SpecialChar     guifg=#F92672               gui=bold
-hi SpecialComment  guifg=#465457               gui=bold
+hi SpecialComment  guifg=#7E8E91               gui=bold
+"hi SpecialComment  guifg=#465457               gui=bold
 hi Special         guifg=#66D9EF guibg=bg      gui=italic
-"hi SpecialKey      guifg=#888A85               gui=italic
-hi SpecialKey      guifg=#465457 guibg=#000000
 if has("spell")
     hi SpellBad    guisp=#FF0000 gui=undercurl
     hi SpellCap    guisp=#7070F0 gui=undercurl
@@ -112,21 +111,37 @@ if s:molokai_original == 1
    hi Comment         guifg=#75715E
    hi CursorLine                    guibg=#3E3D32
    hi CursorColumn                  guibg=#3E3D32
+   hi ColorColumn                   guibg=#3B3A32
    hi LineNr          guifg=#BCBCBC guibg=#3B3A32
-   hi NonText         guifg=#BCBCBC guibg=#3B3A32
+   hi NonText         guifg=#75715E
+   "hi NonText         guifg=#BCBCBC guibg=#3B3A32
+   hi SpecialKey      guifg=#75715E
 else
    hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
-   hi Comment         guifg=#465457
+   hi Comment         guifg=#7E8E91
+   "hi Comment         guifg=#465457
    hi CursorLine                    guibg=#293739
    hi CursorColumn                  guibg=#293739
-   hi LineNr          guifg=#BCBCBC guibg=#232526
-   hi NonText         guifg=#BCBCBC guibg=#232526
+   hi ColorColumn                   guibg=#232526
+   hi LineNr          guifg=#465457 guibg=#232526
+   hi NonText         guifg=#465457
+   hi SpecialKey      guifg=#465457
+   "hi LineNr          guifg=#BCBCBC guibg=#232526
+   "hi NonText         guifg=#BCBCBC guibg=#232526
 end
 
 "
 " Support for 256-color terminal
 "
 if &t_Co > 255
+   if s:molokai_original == 1
+      hi Normal                   ctermbg=234
+      hi CursorLine               ctermbg=235   cterm=none
+   else
+      " hi Normal       ctermfg=252 ctermbg=233
+      hi Normal       ctermfg=252 ctermbg=0
+      hi CursorLine               ctermbg=234   cterm=none
+   endif
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
    hi Number          ctermfg=135
@@ -151,13 +166,17 @@ if &t_Co > 255
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
    hi Function        ctermfg=118
-   hi Identifier      ctermfg=208
+   hi Identifier      ctermfg=208               cterm=none
+   "hi Identifier      ctermfg=208
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
+   " hi SpecialKey      ctermfg=81
+   "hi SpecialKey      ctermfg=245
+   hi SpecialKey      ctermfg=67  ctermbg=16
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
    hi ModeMsg         ctermfg=229
@@ -182,9 +201,12 @@ if &t_Co > 255
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=81  ctermbg=232
-   "hi SpecialKey      ctermfg=245
-   hi SpecialKey      ctermfg=67  ctermbg=16
-
+   if has("spell")
+       hi SpellBad                ctermbg=52
+       hi SpellCap                ctermbg=17
+       hi SpellLocal              ctermbg=17
+       hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
+   endif
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=238 ctermbg=253
    hi StatusLineNC    ctermfg=244 ctermbg=232
@@ -204,28 +226,67 @@ if &t_Co > 255
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
-   "hi Normal          ctermfg=252 ctermbg=233
-   hi Normal          ctermfg=252 ctermbg=0
    "hi Comment         ctermfg=59
    hi Comment         ctermfg=243
    hi CursorLine                  ctermbg=234   cterm=none
    "hi CursorLine      cterm=underline
    hi CursorColumn                ctermbg=234
+   hi ColorColumn                 ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
    hi NonText         ctermfg=250 ctermbg=0
 
-   " MiniBufExpl Colors
-   "hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-   "hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-   " hi MBEVisibleActive ctermfg=252 ctermbg=125
-   " hi MBEVisibleChangedActive ctermfg=16 ctermbg=125
-   "hi MBEVisibleChanged guifg=#F1266F guibg=fg
-   "hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-   "hi MBEChanged guifg=#CD5907 guibg=fg
-    "hi MBENormal guifg=#808080 guibg=fg
-   "hi MBENormal guifg=#CD5907 guibg=fg
-   hi MBENormal ctermfg=252
+   hi SpecialKey      ctermfg=59
+   
+   if exists("g:rehash256") && g:rehash256 == 1
+       hi Normal       ctermfg=252 ctermbg=0
+       hi CursorLine               ctermbg=236   cterm=none
+       hi CursorLineNr    ctermfg=226
+
+       hi Boolean         ctermfg=141
+       hi Character       ctermfg=222
+       hi Number          ctermfg=141
+       hi String          ctermfg=222
+       hi Conditional     ctermfg=197               cterm=bold
+       hi Constant        ctermfg=141               cterm=bold
+
+       hi DiffDelete      ctermfg=125 ctermbg=233
+
+       hi Directory       ctermfg=154               cterm=bold
+       hi Error           ctermfg=125 ctermbg=233
+       hi Exception       ctermfg=154               cterm=bold
+       hi Float           ctermfg=141
+       hi Function        ctermfg=154
+       hi Identifier      ctermfg=208
+
+       hi Keyword         ctermfg=197               cterm=bold
+       hi Operator        ctermfg=197
+       hi PreCondit       ctermfg=154               cterm=bold
+       hi PreProc         ctermfg=154
+       hi Repeat          ctermfg=197               cterm=bold
+       
+       hi Statement       ctermfg=197               cterm=bold
+       hi Tag             ctermfg=197
+       hi Title           ctermfg=203
+       hi Visual                      ctermbg=238
+
+       hi Comment         ctermfg=244
+       hi LineNr          ctermfg=239 ctermbg=235
+       hi NonText         ctermfg=239
+       hi SpecialKey      ctermfg=239
+   endif
 end
+
+" MiniBufExpl Colors
+"hi MBEVisibleActive guifg=#A6DB29 guibg=fg
+"hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
+" hi MBEVisibleActive ctermfg=252 ctermbg=125
+" hi MBEVisibleChangedActive ctermfg=16 ctermbg=125
+"hi MBEVisibleChanged guifg=#F1266F guibg=fg
+"hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
+"hi MBEChanged guifg=#CD5907 guibg=fg
+"hi MBENormal guifg=#808080 guibg=fg
+"hi MBENormal guifg=#CD5907 guibg=fg
+hi MBENormal ctermfg=252
 
 augroup colerscheme
     autocmd!
